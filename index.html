@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>UrbanStyle | Loja Teste</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 32px;
+    }
+
+    header p {
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    nav {
+      background-color: #222;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff4081;
+    }
+
+    .banner {
+      background: linear-gradient(120deg, #ff4081, #ff80ab);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .banner h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .banner p {
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      border-left: 5px solid #ff4081;
+      padding-left: 10px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .price {
+      color: #ff4081;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-content button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #111;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .card-content button:hover {
+      background-color: #ff4081;
+    }
+
+    footer {
+      background-color: #111;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>UrbanStyle</h1>
+    <p>Moda urbana • Loja teste</p>
+  </header>
+
+  <nav>
+    <a href="#">Início</a>
+    <a href="#">Feminino</a>
+    <a href="#">Masculino</a>
+    <a href="#">Contato</a>
+  </nav>
+
+  <section class="banner">
+    <h2>Nova Coleção 2026</h2>
+    <p>Estilo, conforto e atitude</p>
+  </section>
+
+  <div class="container">
+    <h2 class="section-title">Regatas Femininas</h2>
+
+    <div class="products">
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=1">
+        <div class="card-content">
+          <h3>Regata Básica</h3>
+          <p class="price">R$ 49,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=2">
+        <div class="card-content">
+          <h3>Regata Estampada</h3>
+          <p class="price">R$ 59,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=3">
+        <div class="card-content">
+          <h3>Regata Fitness</h3>
+          <p class="price">R$ 69,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2 class="section-title">Camisetas Masculinas</h2>
+
+    <div class="products">
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=4">
+        <div class="card-content">
+          <h3>Camiseta Street</h3>
+          <p class="price">R$ 79,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=5">
+        <div class="card-content">
+          <h3>Camiseta Estampada</h3>
+          <p class="price">R$ 89,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://picsum.photos/400/400?random=6">
+        <div class="card-content">
+          <h3>Camiseta Oversized</h3>
+          <p class="price">R$ 99,90</p>
+          <button>Comprar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 UrbanStyle — Site teste para estudo
+  </footer>
+
+</body>
+</html>
