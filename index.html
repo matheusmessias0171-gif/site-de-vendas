@@ -2,249 +2,270 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>UrbanStyle | Loja Online</title>
+  <title>Matheus | Loja Online</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ================= CSS ================= -->
   <style>
-    :root {
-      --principal: #1e88e5; /* azul masculino */
-      --escuro: #0f172a;
-      --claro: #ffffff;
-      --cinza: #f1f5f9;
+    :root{
+      --primary:#1e88e5;
+      --dark:#020617;
+      --bg:#f1f5f9;
+      --white:#ffffff;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Arial, sans-serif;
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+    body{background:var(--bg);color:#0f172a}
+
+    header{
+      background:var(--dark);
+      color:#fff;
+      padding:16px 20px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:900;
     }
 
-    body {
-      background: var(--cinza);
-      color: #1e293b;
+    .cart-button{
+      position:relative;
     }
 
-    header {
-      background: var(--escuro);
-      color: var(--claro);
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .badge{
+      position:absolute;
+      top:-6px;
+      right:-6px;
+      background:#ef4444;
+      color:#fff;
+      font-size:12px;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:bold;
     }
 
-    header h1 {
-      font-size: 26px;
+    nav{background:#020617;padding:12px;display:flex;justify-content:center;gap:25px}
+    nav a{color:#fff;text-decoration:none;font-size:14px}
+    nav a:hover{color:var(--primary)}
+
+    .banner{
+      background:
+        linear-gradient(rgba(2,6,23,.7),rgba(2,6,23,.7)),
+        url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1600&q=80');
+      background-size:cover;
+      background-position:center;
+      padding:120px 20px;
+      text-align:center;
+      color:#fff;
+      animation:fadeIn 1s ease;
     }
 
-    .cart-btn {
-      background: var(--principal);
-      padding: 10px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+    .banner h2{font-size:42px;margin-bottom:10px}
+    .banner p{font-size:18px;opacity:.9}
 
-    nav {
-      background: #020617;
-      padding: 12px;
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-    }
+    .container{max-width:1200px;margin:40px auto;padding:0 15px}
+    .title{font-size:26px;margin-bottom:25px;border-left:5px solid var(--primary);padding-left:10px}
 
-    nav a {
-      color: var(--claro);
-      text-decoration: none;
-      font-size: 14px;
-    }
+    .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
 
-    nav a:hover {
-      color: var(--principal);
+    .card{
+      background:#fff;
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:0 15px 35px rgba(0,0,0,.12);
+      transition:.35s;
     }
+    .card:hover{transform:translateY(-8px)}
+    .card img{width:100%;height:300px;object-fit:cover}
+    .card-content{padding:18px}
+    .price{color:var(--primary);font-weight:bold;margin:10px 0}
 
-    .banner {
-      background: linear-gradient(120deg, #020617, #1e293b);
-      padding: 70px 20px;
-      text-align: center;
-      color: var(--claro);
+    .btn{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      background:linear-gradient(135deg,#020617,#1e293b);
+      color:#fff;
+      transition:.3s;
     }
+    .btn:hover{transform:translateY(-2px)}
 
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 15px;
-    }
+    /* MODAL */
+    .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:999}
+    .modal.active{display:flex}
+    .modal-box{background:#fff;width:90%;max-width:900px;border-radius:18px;animation:zoom .3s}
+    .modal-content{display:grid;grid-template-columns:1fr 1fr;gap:25px;padding:25px}
+    .modal-content img{width:100%;border-radius:14px}
+    .close{text-align:right;font-size:22px;cursor:pointer}
 
-    .title {
-      font-size: 24px;
-      margin-bottom: 25px;
-      border-left: 5px solid var(--principal);
-      padding-left: 10px;
+    .sizes{display:flex;gap:10px;margin:15px 0}
+    .size{
+      padding:8px 14px;
+      border:2px solid #cbd5f5;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
     }
+    .size.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
+    /* CARRINHO */
+    .cart{position:fixed;top:80px;right:-360px;width:320px;height:calc(100vh - 100px);background:#fff;box-shadow:-5px 0 15px rgba(0,0,0,.3);padding:20px;transition:.4s;z-index:950;border-radius:14px 0 0 14px;overflow-y:auto}
+    .cart.active{right:0}
 
-    .card {
-      background: var(--claro);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
+    footer{background:var(--dark);color:#94a3b8;text-align:center;padding:20px;margin-top:40px;font-size:14px}
 
-    .card:hover {
-      transform: translateY(-6px);
-    }
+    @keyframes zoom{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 
-    .card img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .card-content {
-      padding: 18px;
-    }
-
-    .price {
-      color: var(--principal);
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .btn {
-      width: 100%;
-      padding: 12px;
-      border: none;
-      background: var(--escuro);
-      color: var(--claro);
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background: var(--principal);
-    }
-
-    /* Carrinho */
-    .cart {
-      position: fixed;
-      top: 0;
-      right: -100%;
-      width: 340px;
-      height: 100vh;
-      background: var(--claro);
-      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
-      padding: 20px;
-      transition: 0.4s;
-      z-index: 999;
-    }
-
-    .cart.active {
-      right: 0;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .close-cart {
-      cursor: pointer;
-      font-size: 20px;
-    }
-
-    .cart-item {
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background: var(--escuro);
-      color: #94a3b8;
-      text-align: center;
-      padding: 20px;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      .card img {
-        height: 260px;
-      }
-    }
+    @media(max-width:768px){.modal-content{grid-template-columns:1fr}.banner h2{font-size:32px}}
   </style>
 </head>
 <body>
 
 <header>
-  <h1>UrbanStyle</h1>
-  <div class="cart-btn" onclick="toggleCart()">🛒 Carrinho</div>
+  <h1>Matheus</h1>
+  <div class="cart-button">
+    <button class="btn" onclick="toggleCart()">🛒 Carrinho</button>
+    <div class="badge" id="cartBadge">0</div>
+  </div>
 </header>
 
 <nav>
-  <a href="index.html">Início</a>
-  <a href="#">Masculino</a>
-  <a href="#">Feminino</a>
+  <a href="#">Início</a>
   <a href="https://wa.me/5500000000000" target="_blank">Suporte</a>
 </nav>
 
 <section class="banner">
-  <h2>Loja de Roupas Urbanas</h2>
-  <p>Projeto realista para testes</p>
+  <h2>Vista sua atitude</h2>
+  <p>Moda urbana moderna, conforto e estilo para o dia a dia</p>
 </section>
 
 <div class="container">
   <h2 class="title">Produtos</h2>
 
   <div class="products">
-    <!-- PRODUTO 1 -->
     <div class="card">
       <img src="images/regata.png">
       <div class="card-content">
         <h3>Regata Feminina</h3>
         <p class="price">R$ 59,90</p>
-        <a href="produto-regata.html"><button class="btn">Ver Produto</button></a>
+        <button class="btn" onclick="openProduct('Regata Feminina','R$ 59,90','images/regata.png','Regata feminina em tecido leve e respirável, perfeita para dias quentes e looks casuais.')">Ver Produto</button>
       </div>
     </div>
 
-    <!-- PRODUTO 2 -->
     <div class="card">
       <img src="images/camiseta.png">
       <div class="card-content">
-        <h3>Camiseta Masculina</h3>
+        <h3>Camiseta Masculina ── COPA DO MUNDO DO BRASIL</h3>
         <p class="price">R$ 79,90</p>
-        <a href="produto-camiseta.html"><button class="btn">Ver Produto</button></a>
+        <button class="btn" onclick="openProduct('Camiseta Masculina - COPA DO MUNDO DO BRASIL','R$ 79,90','images/camiseta.png','Camiseta masculina ─ COPA DO MUNDO DO BRASIL.')">Ver Produto</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Carrinho -->
-<div class="cart" id="cart">
-  <div class="cart-header">
-    <h3>Carrinho</h3>
-    <span class="close-cart" onclick="toggleCart()">✖</span>
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-content">
+      <img id="modalImg">
+      <div>
+        <div class="close" onclick="closeProduct()">✖</div>
+        <h2 id="modalName"></h2>
+        <h3 id="modalPrice" style="color:#1e88e5"></h3>
+        <p id="modalDesc"></p>
+
+        <div class="sizes">
+          <div class="size" onclick="selectSize(this)">P</div>
+          <div class="size" onclick="selectSize(this)">M</div>
+          <div class="size" onclick="selectSize(this)">G</div>
+        </div>
+
+        <button class="btn" style="background:linear-gradient(135deg,#1e88e5,#2563eb)" onclick="addToCart()">Adicionar ao Carrinho</button>
+      </div>
+    </div>
   </div>
-  <div id="cartItems"></div>
 </div>
 
-<footer>
-  © 2026 UrbanStyle — Loja teste
-</footer>
+<!-- CARRINHO -->
+<div class="cart" id="cart">
+  <h3>Carrinho</h3>
+  <br>
+  <div id="cartItems"></div>
+  <hr style="margin:15px 0">
+  <strong>Total: R$ <span id="cartTotal">0.00</span></strong>
+  <br><br>
+  <a id="checkoutWhats" target="_blank"><button class="btn">Finalizar no WhatsApp</button></a>
+</div>
+
+<footer>© 2026 Matheus — Loja</footer>
 
 <script>
-  function toggleCart() {
-    document.getElementById('cart').classList.toggle('active');
+  const modal=document.getElementById('modal');
+  const modalImg=document.getElementById('modalImg');
+  const modalName=document.getElementById('modalName');
+  const modalPrice=document.getElementById('modalPrice');
+  const modalDesc=document.getElementById('modalDesc');
+  const cart=document.getElementById('cart');
+  const badge=document.getElementById('cartBadge');
+  const checkoutWhats=document.getElementById('checkoutWhats');
+
+  let cartData=[];
+  let selectedSize='';
+
+  function openProduct(nome,preco,img,desc){
+    modal.classList.add('active');
+    modalImg.src=img;
+    modalName.innerText=nome;
+    modalPrice.innerText=preco;
+    modalDesc.innerText=desc;
+    document.querySelectorAll('.size').forEach(s=>s.classList.remove('active'));
+    selectedSize='';
+  }
+
+  function closeProduct(){modal.classList.remove('active')}
+  function toggleCart(){cart.classList.toggle('active')}
+
+  function selectSize(el){
+    document.querySelectorAll('.size').forEach(s=>s.classList.remove('active'));
+    el.classList.add('active');
+    selectedSize=el.innerText;
+  }
+
+  function addToCart(){
+    if(!selectedSize){alert('Selecione um tamanho');return}
+    const preco=Number(modalPrice.innerText.replace('R$','').replace(',','.'));
+    cartData.push({nome:modalName.innerText,tamanho:selectedSize,preco});
+    renderCart();
+    closeProduct();
+    toggleCart();
+  }
+
+  function renderCart(){
+    const items=document.getElementById('cartItems');
+    const totalEl=document.getElementById('cartTotal');
+    items.innerHTML='';
+    let total=0;
+
+    cartData.forEach((item,i)=>{
+      total+=item.preco;
+      items.innerHTML+=`
+        <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+          <span>${item.nome} (${item.tamanho})</span>
+          <span onclick="cartData.splice(${i},1);renderCart()" style="cursor:pointer">✖</span>
+        </div>`;
+    });
+
+    badge.innerText=cartData.length;
+    totalEl.innerText=total.toFixed(2);
+    checkoutWhats.href=`https://wa.me/5500000000000?text=Pedido:%20${cartData.map(i=>i.nome+' '+i.tamanho).join(', ')}%20Total:%20R$${total.toFixed(2)}`;
   }
 </script>
 
