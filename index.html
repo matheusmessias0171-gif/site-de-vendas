@@ -1,239 +1,252 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>UrbanStyle | Loja Teste</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>UrbanStyle | Loja Online</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- ================= CSS ================= -->
   <style>
+    :root {
+      --principal: #1e88e5; /* azul masculino */
+      --escuro: #0f172a;
+      --claro: #ffffff;
+      --cinza: #f1f5f9;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Segoe UI', Arial, sans-serif;
     }
 
     body {
-      background-color: #f4f4f4;
-      color: #333;
+      background: var(--cinza);
+      color: #1e293b;
     }
 
     header {
-      background-color: #111;
-      color: #fff;
+      background: var(--escuro);
+      color: var(--claro);
       padding: 20px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     header h1 {
-      font-size: 32px;
+      font-size: 26px;
     }
 
-    header p {
+    .cart-btn {
+      background: var(--principal);
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
       font-size: 14px;
-      color: #ccc;
     }
 
     nav {
-      background-color: #222;
-      padding: 10px;
+      background: #020617;
+      padding: 12px;
       display: flex;
       justify-content: center;
-      gap: 20px;
+      gap: 25px;
     }
 
     nav a {
-      color: #fff;
+      color: var(--claro);
       text-decoration: none;
       font-size: 14px;
-      transition: 0.3s;
     }
 
     nav a:hover {
-      color: #ff4081;
+      color: var(--principal);
     }
 
     .banner {
-      background: linear-gradient(120deg, #ff4081, #ff80ab);
-      color: #fff;
-      padding: 60px 20px;
+      background: linear-gradient(120deg, #020617, #1e293b);
+      padding: 70px 20px;
       text-align: center;
-    }
-
-    .banner h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
-
-    .banner p {
-      font-size: 16px;
+      color: var(--claro);
     }
 
     .container {
       max-width: 1200px;
       margin: 40px auto;
-      padding: 0 20px;
+      padding: 0 15px;
     }
 
-    .section-title {
+    .title {
       font-size: 24px;
-      margin-bottom: 20px;
-      border-left: 5px solid #ff4081;
+      margin-bottom: 25px;
+      border-left: 5px solid var(--principal);
       padding-left: 10px;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
     }
 
     .card {
-      background-color: #fff;
-      border-radius: 10px;
+      background: var(--claro);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
       transition: 0.3s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-6px);
     }
 
     .card img {
       width: 100%;
-      height: 280px;
+      height: 300px;
       object-fit: cover;
     }
 
     .card-content {
-      padding: 15px;
-    }
-
-    .card-content h3 {
-      font-size: 18px;
-      margin-bottom: 5px;
+      padding: 18px;
     }
 
     .price {
-      color: #ff4081;
+      color: var(--principal);
       font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background: var(--escuro);
+      color: var(--claro);
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--principal);
+    }
+
+    /* Carrinho */
+    .cart {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 340px;
+      height: 100vh;
+      background: var(--claro);
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      padding: 20px;
+      transition: 0.4s;
+      z-index: 999;
+    }
+
+    .cart.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .close-cart {
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .cart-item {
+      font-size: 14px;
       margin-bottom: 10px;
     }
 
-    .card-content button {
-      width: 100%;
-      padding: 10px;
-      border: none;
-      background-color: #111;
-      color: #fff;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .card-content button:hover {
-      background-color: #ff4081;
-    }
-
     footer {
-      background-color: #111;
-      color: #ccc;
+      background: var(--escuro);
+      color: #94a3b8;
       text-align: center;
       padding: 20px;
       margin-top: 40px;
       font-size: 14px;
     }
+
+    @media (max-width: 768px) {
+      .card img {
+        height: 260px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>UrbanStyle</h1>
-    <p>Moda urbana • Loja teste</p>
-  </header>
+<header>
+  <h1>UrbanStyle</h1>
+  <div class="cart-btn" onclick="toggleCart()">🛒 Carrinho</div>
+</header>
 
-  <nav>
-    <a href="#">Início</a>
-    <a href="#">Feminino</a>
-    <a href="#">Masculino</a>
-    <a href="#">Contato</a>
-  </nav>
+<nav>
+  <a href="index.html">Início</a>
+  <a href="#">Masculino</a>
+  <a href="#">Feminino</a>
+  <a href="https://wa.me/5500000000000" target="_blank">Suporte</a>
+</nav>
 
-  <section class="banner">
-    <h2>Nova Coleção 2026</h2>
-    <p>Estilo, conforto e atitude</p>
-  </section>
+<section class="banner">
+  <h2>Loja de Roupas Urbanas</h2>
+  <p>Projeto realista para testes</p>
+</section>
 
-  <div class="container">
-    <h2 class="section-title">Regatas Femininas</h2>
+<div class="container">
+  <h2 class="title">Produtos</h2>
 
-    <div class="products">
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=1">
-        <div class="card-content">
-          <h3>Regata Básica</h3>
-          <p class="price">R$ 49,90</p>
-          <button>Comprar</button>
-        </div>
+  <div class="products">
+    <!-- PRODUTO 1 -->
+    <div class="card">
+      <img src="images/regata.png">
+      <div class="card-content">
+        <h3>Regata Feminina</h3>
+        <p class="price">R$ 59,90</p>
+        <a href="produto-regata.html"><button class="btn">Ver Produto</button></a>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=2">
-        <div class="card-content">
-          <h3>Regata Estampada</h3>
-          <p class="price">R$ 59,90</p>
-          <button>Comprar</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=3">
-        <div class="card-content">
-          <h3>Regata Fitness</h3>
-          <p class="price">R$ 69,90</p>
-          <button>Comprar</button>
-        </div>
+    <!-- PRODUTO 2 -->
+    <div class="card">
+      <img src="images/camiseta.png">
+      <div class="card-content">
+        <h3>Camiseta Masculina</h3>
+        <p class="price">R$ 79,90</p>
+        <a href="produto-camiseta.html"><button class="btn">Ver Produto</button></a>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="container">
-    <h2 class="section-title">Camisetas Masculinas</h2>
-
-    <div class="products">
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=4">
-        <div class="card-content">
-          <h3>Camiseta Street</h3>
-          <p class="price">R$ 79,90</p>
-          <button>Comprar</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=5">
-        <div class="card-content">
-          <h3>Camiseta Estampada</h3>
-          <p class="price">R$ 89,90</p>
-          <button>Comprar</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://picsum.photos/400/400?random=6">
-        <div class="card-content">
-          <h3>Camiseta Oversized</h3>
-          <p class="price">R$ 99,90</p>
-          <button>Comprar</button>
-        </div>
-      </div>
-    </div>
+<!-- Carrinho -->
+<div class="cart" id="cart">
+  <div class="cart-header">
+    <h3>Carrinho</h3>
+    <span class="close-cart" onclick="toggleCart()">✖</span>
   </div>
+  <div id="cartItems"></div>
+</div>
 
-  <footer>
-    © 2026 UrbanStyle — Site teste para estudo
-  </footer>
+<footer>
+  © 2026 UrbanStyle — Loja teste
+</footer>
+
+<script>
+  function toggleCart() {
+    document.getElementById('cart').classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
