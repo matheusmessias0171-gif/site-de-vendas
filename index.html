@@ -1,407 +1,532 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <title>Matheus | Loja Online</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M ⎻ STORE</title>
 
-  <style>
-    :root{
-      --primary:#1e88e5;
-      --dark:#020617;
-      --bg:#f1f5f9;
-      --white:#ffffff;
-    }
+<link rel="icon" type="image/png" href="images/favicon.png">
 
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-    body{background:var(--bg);color:#0f172a}
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#0b0f1a;color:#fff;overflow-x:hidden}
 
-    header{
-      background:var(--dark);
-      color:#fff;
-      padding:16px 20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      position:sticky;
-      top:0;
-      z-index:900;
-    }
+/* ===== HEADER ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 25px;
+  background:#050814;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.logo img{height:45px}
 
-    .cart-button{position:relative}
+.cart-btn{
+  background:linear-gradient(135deg,#1e88e5,#2563eb);
+  padding:12px 22px;
+  border-radius:30px;
+  cursor:pointer;
+  position:relative;
+  transition:.3s;
+}
+.cart-btn:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 15px 40px rgba(30,136,229,.8);
+}
 
-    .badge{
-      position:absolute;
-      top:-6px;
-      right:-6px;
-      background:#ef4444;
-      color:#fff;
-      font-size:12px;
-      width:20px;
-      height:20px;
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:bold;
-    }
+.badge{
+  position:absolute;
+  top:-6px;
+  right:-6px;
+  background:#ef4444;
+  border-radius:50%;
+  padding:4px 8px;
+  font-size:12px;
+}
 
-    nav{
-      background:#020617;
-      padding:12px;
-      display:flex;
-      justify-content:center;
-      gap:25px
-    }
-    nav a{
-      color:#fff;
-      text-decoration:none;
-      font-size:14px;
-      opacity:.85
-    }
-    nav a:hover{opacity:1;color:var(--primary)}
+/* ===== HERO ===== */
+.hero{
+  padding:90px 20px;
+  text-align:center;
+}
+.hero h1{font-size:2.6rem}
+.hero p{opacity:.85;margin-top:10px}
 
-    /* BANNER */
-    .banner{
-      background:
-        linear-gradient(rgba(2,6,23,.75),rgba(2,6,23,.75)),
-        url('https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=1600&q=80');
-      background-size:cover;
-      background-position:center;
-      padding:130px 20px;
-      text-align:center;
-      color:#fff;
-      animation:fadeIn 1s ease;
-    }
+/* ===== PRODUTOS ===== */
+.products{
+  max-width:1200px;
+  margin:auto;
+  padding:40px 20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+}
+.card{
+  background:#12172a;
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 20px 50px rgba(0,0,0,.6);
+}
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:contain;
+}
+.card span{
+  color:#42a5f5;
+  font-weight:bold;
+  display:block;
+  margin:6px 0;
+}
 
-    .banner h2{
-      font-size:44px;
-      margin-bottom:12px;
-      min-height:56px;
-    }
+/* ===== BOTÕES PREMIUM ===== */
+.btn-premium{
+  margin-top:14px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  background:linear-gradient(135deg,#1e88e5,#2563eb);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:.35s;
+  box-shadow:0 8px 25px rgba(30,136,229,.35);
+}
+.btn-premium:hover{
+  transform:translateY(-2px) scale(1.04);
+  box-shadow:0 15px 40px rgba(30,136,229,.65);
+}
+.btn-premium:active{transform:scale(.96)}
 
-    .banner p{
-      font-size:18px;
-      opacity:.9;
-      min-height:24px;
-    }
+/* ===== FEEDBACKS ===== */
+.feedbacks{
+  max-width:1100px;
+  margin:80px auto;
+  padding:20px;
+}
+.feedbacks h2{
+  text-align:center;
+  margin-bottom:35px;
+}
+.feedback-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+.feedback-card{
+  background:#12172a;
+  border-radius:18px;
+  padding:20px;
+  transition:.3s;
+}
+.feedback-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 15px 40px rgba(0,0,0,.5);
+}
+.feedback-card strong{color:#42a5f5}
+.feedback-card p{margin-top:8px;opacity:.85}
 
-    .cursor{
-      display:inline-block;
-      margin-left:3px;
-      animation:blink 1s infinite;
-    }
+.feedback-btn{
+  display:block;
+  margin:35px auto 0;
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  background:linear-gradient(135deg,#1e88e5,#2563eb);
+  color:#fff;
+  cursor:pointer;
+  transition:.3s;
+}
+.feedback-btn:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(30,136,229,.7);
+}
 
-    @keyframes blink{
-      0%,50%{opacity:1}
-      51%,100%{opacity:0}
-    }
+/* ===== MODAL ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+}
+.modal.active{display:flex}
 
-    .container{max-width:1200px;margin:40px auto;padding:0 15px}
-    .title{
-      font-size:26px;
-      margin-bottom:25px;
-      border-left:5px solid var(--primary);
-      padding-left:10px
-    }
+.modal-box{
+  background:#12172a;
+  padding:25px;
+  border-radius:22px;
+  max-width:800px;
+  width:95%;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  position:relative;
+  animation:fadeUp .3s ease;
+}
+.modal-box img{width:100%;border-radius:14px}
 
-    .products{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:25px
-    }
+.close{
+  position:absolute;
+  top:15px;
+  right:18px;
+  font-size:22px;
+  cursor:pointer;
+}
 
-    .card{
-      background:#fff;
-      border-radius:18px;
-      overflow:hidden;
-      box-shadow:0 15px 35px rgba(0,0,0,.12);
-      transition:.35s;
-    }
-    .card:hover{transform:translateY(-10px)}
-    .card img{width:100%;height:300px;object-fit:cover}
-    .card-content{padding:18px}
+.modal-info input,
+.modal-info textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:10px;
+  border:none;
+}
+.modal-info textarea{resize:none;height:100px}
 
-    .price{
-      color:var(--primary);
-      font-weight:bold;
-      margin:10px 0
-    }
+/* ===== CARRINHO ===== */
+.cart{
+  position:fixed;
+  top:80px;
+  right:-350px;
+  width:300px;
+  height:calc(100vh - 100px);
+  background:#12172a;
+  padding:20px;
+  transition:.4s;
+  z-index:1500;
+}
+.cart.active{right:0}
 
-    .btn{
-      width:100%;
-      padding:14px;
-      border:none;
-      border-radius:14px;
-      cursor:pointer;
-      font-weight:600;
-      background:linear-gradient(135deg,#020617,#1e293b);
-      color:#fff;
-      transition:.3s;
-    }
-    .btn:hover{
-      transform:translateY(-3px);
-      box-shadow:0 10px 20px rgba(0,0,0,.25)
-    }
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+  font-size:14px;
+}
+.remove{cursor:pointer;color:#ef4444}
 
-    /* MODAL */
-    .modal{
-      position:fixed;
-      top:0;left:0;
-      width:100%;
-      height:100%;
-      background:rgba(0,0,0,.7);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:999
-    }
-    .modal.active{display:flex}
-    .modal-box{
-      background:#fff;
-      width:90%;
-      max-width:900px;
-      border-radius:18px;
-      animation:zoom .3s
-    }
-    .modal-content{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:25px;
-      padding:25px
-    }
-    .modal-content img{width:100%;border-radius:14px}
-    .close{text-align:right;font-size:22px;cursor:pointer}
+.total{margin-top:15px;font-weight:bold}
 
-    .sizes{display:flex;gap:10px;margin:15px 0}
-    .size{
-      padding:8px 16px;
-      border:2px solid #cbd5f5;
-      border-radius:10px;
-      cursor:pointer;
-      font-weight:600;
-      transition:.2s
-    }
-    .size.active{
-      background:var(--primary);
-      color:#fff;
-      border-color:var(--primary)
-    }
+/* ===== WHATSAPP ===== */
+.whats-btn{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:18px;
+  background:linear-gradient(135deg,#25d366,#1ebe5d);
+  color:#fff;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.35s ease;
+  position:relative;
+  overflow:hidden;
+}
 
-    /* CARRINHO */
-    .cart{
-      position:fixed;
-      top:80px;
-      right:-360px;
-      width:320px;
-      height:calc(100vh - 100px);
-      background:#fff;
-      box-shadow:-5px 0 15px rgba(0,0,0,.3);
-      padding:20px;
-      transition:.4s;
-      z-index:950;
-      border-radius:16px 0 0 16px;
-      overflow-y:auto
-    }
-    .cart.active{right:0}
+.whats-content{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
 
-    footer{
-      background:var(--dark);
-      color:#94a3b8;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
-      font-size:14px
-    }
+.whats-icon{
+  width:22px;
+  height:22px;
+  animation:pulse 2s infinite;
+}
 
-    @keyframes zoom{
-      from{transform:scale(.9);opacity:0}
-      to{transform:scale(1);opacity:1}
-    }
-    @keyframes fadeIn{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:none}
-    }
+.whats-btn:hover{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 15px 35px rgba(37,211,102,.6);
+}
 
-    @media(max-width:768px){
-      .modal-content{grid-template-columns:1fr}
-      .banner h2{font-size:32px}
-    }
-  </style>
+.whats-btn::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.25),
+    transparent
+  );
+  transition:.6s;
+}
+.whats-btn:hover::after{left:100%}
+
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+  100%{transform:scale(1)}
+}
+@keyframes fadeUp{
+  from{transform:translateY(30px);opacity:0}
+  to{transform:none;opacity:1}
+}
+
+@media(max-width:650px){
+  .modal-box{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>Matheus</h1>
-  <div class="cart-button">
-    <button class="btn" onclick="toggleCart()">🛒 Carrinho</button>
-    <div class="badge" id="cartBadge">0</div>
+  <div class="logo">
+    <img src="images/logomatheus.png">
+  </div>
+  <div class="cart-btn" onclick="toggleCart()">
+    🛒 Carrinho
+    <span class="badge" id="cartCount">0</span>
   </div>
 </header>
 
-<nav>
-  <a href="#">Início</a>
-  <a href="https://wa.me/5500000000000" target="_blank">Suporte</a>
-</nav>
-
-<section class="banner">
-  <h2 id="typingTitle"></h2>
-  <p id="typingSub"></p>
+<section class="hero">
+  <h1 id="title"></h1>
+  <p id="sub"></p>
 </section>
 
-<div class="container">
-  <h2 class="title">Produtos</h2>
+<section class="products">
+  <div class="card">
+    <img src="images/regata.png">
+    <h3>Regata Premium</h3>
+    <span>R$ 59,90</span>
+    <button class="btn-premium"
+      onclick="openProduct(
+        'Regata Premium',
+        59.90,
+        'images/regata.png',
+        'Excelente para dias quentes, tecido leve, respirável e extremamente confortável.'
+      )">
+      Ver produto
+    </button>
+  </div>
 
-  <div class="products">
-    <div class="card">
-      <img src="images/regata.png">
-      <div class="card-content">
-        <h3>Regata Feminina</h3>
-        <p class="price">R$ 59,90</p>
-        <button class="btn" onclick="openProduct(
-          'Regata Feminina',
-          'R$ 59,90',
-          'images/regata.png',
-          'Leve, confortável e perfeita para compor looks modernos no dia a dia.'
-        )">Ver Produto</button>
-      </div>
+  <div class="card">
+    <img src="images/camiseta.png">
+    <h3>Camiseta Brasil</h3>
+    <span>R$ 79,90</span>
+    <button class="btn-premium"
+      onclick="openProduct(
+        'Camiseta Brasil',
+        79.90,
+        'images/camiseta.png',
+        'Ideal para a Copa do Mundo, estilosa, confortável e com ótima durabilidade.'
+      )">
+      Ver produto
+    </button>
+  </div>
+</section>
+
+<section class="feedbacks">
+  <h2>O que nossos clientes dizem</h2>
+
+  <div class="feedback-grid" id="feedbackGrid">
+    <div class="feedback-card">
+      <strong>Lucas M.</strong>
+      <p>Produto de excelente qualidade, chegou rápido e veste muito bem.</p>
+    </div>
+    <div class="feedback-card">
+      <strong>Ana S.</strong>
+      <p>Tecido muito confortável, recomendo demais.</p>
+    </div>
+  </div>
+
+  <button class="feedback-btn" onclick="openFeedback()">
+    Deixar feedback
+  </button>
+</section>
+
+<!-- MODAL FEEDBACK -->
+<div class="modal" id="feedbackModal">
+  <div class="modal-box">
+    <div class="close" onclick="closeFeedback()">✖</div>
+
+    <div class="modal-info">
+      <input id="fbName" placeholder="Seu nome">
+      <textarea id="fbText" placeholder="Escreva seu feedback"></textarea>
+      <button class="btn-premium" onclick="sendFeedback()">
+        Enviar feedback
+      </button>
     </div>
 
-    <div class="card">
-      <img src="images/camiseta.png">
-      <div class="card-content">
-        <h3>Camiseta Masculina — Copa do Mundo</h3>
-        <p class="price">R$ 79,90</p>
-        <button class="btn" onclick="openProduct(
-          'Camiseta Masculina — Copa do Mundo',
-          'R$ 79,90',
-          'images/camiseta.png',
-          'Design exclusivo, tecido confortável e ideal para quem valoriza estilo.'
-        )">Ver Produto</button>
-      </div>
-    </div>
+    <img src="images/feedbacklogo.png">
   </div>
 </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal">
+<!-- MODAL PRODUTO -->
+<div class="modal" id="productModal" onclick="if(event.target===this)closeProduct()">
   <div class="modal-box">
-    <div class="modal-content">
-      <img id="modalImg">
-      <div>
-        <div class="close" onclick="closeProduct()">✖</div>
-        <h2 id="modalName"></h2>
-        <h3 id="modalPrice" style="color:#1e88e5"></h3>
-        <p id="modalDesc"></p>
+    <div class="close" onclick="closeProduct()">✖</div>
 
-        <div class="sizes">
-          <div class="size" onclick="selectSize(this)">P</div>
-          <div class="size" onclick="selectSize(this)">M</div>
-          <div class="size" onclick="selectSize(this)">G</div>
-        </div>
+    <img id="modalImg">
 
-        <button class="btn" style="background:linear-gradient(135deg,#1e88e5,#2563eb)" onclick="addToCart()">
-          Adicionar ao Carrinho
-        </button>
-      </div>
+    <div class="modal-info">
+      <h2 id="modalName"></h2>
+
+      <strong id="modalPrice"
+        style="color:#42a5f5;font-size:1.2rem;margin:8px 0;display:block">
+      </strong>
+
+      <p id="modalDesc" style="opacity:.85;margin-bottom:18px"></p>
+
+      <button class="btn-premium" onclick="addToCart()">
+        Adicionar ao carrinho
+      </button>
     </div>
   </div>
 </div>
 
 <!-- CARRINHO -->
 <div class="cart" id="cart">
-  <h3>Carrinho</h3><br>
+  <h3>Carrinho</h3>
+
   <div id="cartItems"></div>
-  <hr style="margin:15px 0">
-  <strong>Total: R$ <span id="cartTotal">0.00</span></strong><br><br>
-  <a id="checkoutWhats" target="_blank">
-    <button class="btn">Finalizar no WhatsApp</button>
-  </a>
+
+  <div class="total">
+    Total: R$ <span id="total">0.00</span>
+  </div>
+
+  <button class="whats-btn" onclick="checkout()">
+    <span class="whats-content">
+      <img src="images/logowhatsapp.png" class="whats-icon">
+      <span>Finalizar pedido pelo WhatsApp</span>
+    </span>
+  </button>
 </div>
 
-<footer>© 2026 Matheus — Loja</footer>
-
 <script>
-  // ===== TEXTO DO BANNER (MUDE AQUI) =====
-  const titleText = "Estilo que acompanha você";
-  const subText   = "Peças pensadas para conforto, identidade e presença no dia a dia.";
+const WHATSAPP_NUMBER="5516994658891";
 
-  let t1 = 0, t2 = 0;
+/* TEXTO DIGITANDO */
+const titleText="M ― Store";
+const subText="Estilo, conforto e confiança";
+let i=0,j=0;
+(function type(){
+  if(i<titleText.length){
+    title.innerHTML+=titleText[i++];
+    setTimeout(type,80)
+  } else if(j<subText.length){
+    sub.innerHTML+=subText[j++];
+    setTimeout(type,40)
+  }
+})();
 
-  function typeEffect(el, text, speed){
-    if(el.innerHTML.length < text.length){
-      el.innerHTML = text.slice(0, el.innerHTML.length + 1) + '<span class="cursor">|</span>';
-      setTimeout(() => typeEffect(el, text, speed), speed);
-    } else {
-      el.innerHTML = text;
-    }
+/* PRODUTOS */
+let currentProduct=null;
+let cartData=[];
+
+function openProduct(n,p,img,d){
+  currentProduct={n,p};
+  modalImg.src=img;
+  modalName.innerText=n;
+  modalPrice.innerText="R$ "+p.toFixed(2);
+  modalDesc.innerText=d;
+  productModal.classList.add('active');
+}
+
+function closeProduct(){
+  productModal.classList.remove('active');
+}
+
+function addToCart(){
+  cartData.push(currentProduct);
+  updateCart();
+  closeProduct();
+  toggleCart();
+}
+
+/* CARRINHO */
+function toggleCart(){
+  cart.classList.toggle('active');
+}
+
+function updateCart(){
+  cartItems.innerHTML="";
+  let total=0;
+
+  cartData.forEach((item,index)=>{
+    total+=item.p;
+    cartItems.innerHTML+=`
+      <div class="cart-item">
+        ${item.n}
+        <span>
+          R$ ${item.p.toFixed(2)}
+          <span class="remove" onclick="removeItem(${index})">✖</span>
+        </span>
+      </div>
+    `;
+  });
+
+  cartCount.innerText=cartData.length;
+  document.getElementById('total').innerText=total.toFixed(2);
+}
+
+function removeItem(i){
+  cartData.splice(i,1);
+  updateCart();
+}
+
+function checkout(){
+  if(!cartData.length){
+    alert("Carrinho vazio");
+    return;
   }
 
-  typeEffect(document.getElementById('typingTitle'), titleText, 70);
-  setTimeout(()=>{
-    typeEffect(document.getElementById('typingSub'), subText, 35);
-  },1200);
+  const msg=cartData
+    .map(i=>`${i.n} - R$ ${i.p.toFixed(2)}`)
+    .join('%0A');
 
-  // ===== LOJA =====
-  const modal=document.getElementById('modal');
-  const modalImg=document.getElementById('modalImg');
-  const modalName=document.getElementById('modalName');
-  const modalPrice=document.getElementById('modalPrice');
-  const modalDesc=document.getElementById('modalDesc');
-  const cart=document.getElementById('cart');
-  const badge=document.getElementById('cartBadge');
-  const checkoutWhats=document.getElementById('checkoutWhats');
+  window.open(
+    `https://wa.me/${WHATSAPP_NUMBER}?text=Pedido:%0A${msg}`,
+    '_blank'
+  );
+}
 
-  let cartData=[];
-  let selectedSize='';
+/* FEEDBACK */
+function openFeedback(){
+  feedbackModal.classList.add('active');
+}
+function closeFeedback(){
+  feedbackModal.classList.remove('active');
+}
+function sendFeedback(){
+  const n=fbName.value.trim();
+  const t=fbText.value.trim();
 
-  function openProduct(nome,preco,img,desc){
-    modal.classList.add('active');
-    modalImg.src=img;
-    modalName.innerText=nome;
-    modalPrice.innerText=preco;
-    modalDesc.innerText=desc;
-    document.querySelectorAll('.size').forEach(s=>s.classList.remove('active'));
-    selectedSize='';
+  if(!n||!t){
+    alert("Preencha tudo");
+    return;
   }
 
-  function closeProduct(){modal.classList.remove('active')}
-  function toggleCart(){cart.classList.toggle('active')}
+  feedbackGrid.innerHTML+=`
+    <div class="feedback-card">
+      <strong>${n}</strong>
+      <p>${t}</p>
+    </div>
+  `;
 
-  function selectSize(el){
-    document.querySelectorAll('.size').forEach(s=>s.classList.remove('active'));
-    el.classList.add('active');
-    selectedSize=el.innerText;
-  }
-
-  function addToCart(){
-    if(!selectedSize){alert('Selecione um tamanho');return}
-    const preco=Number(modalPrice.innerText.replace('R$','').replace(',','.'));
-    cartData.push({nome:modalName.innerText,tamanho:selectedSize,preco});
-    renderCart();
-    closeProduct();
-    toggleCart();
-  }
-
-  function renderCart(){
-    const items=document.getElementById('cartItems');
-    const totalEl=document.getElementById('cartTotal');
-    items.innerHTML='';
-    let total=0;
-
-    cartData.forEach((item,i)=>{
-      total+=item.preco;
-      items.innerHTML+=`
-        <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-          <span>${item.nome} (${item.tamanho})</span>
-          <span onclick="cartData.splice(${i},1);renderCart()" style="cursor:pointer">✖</span>
-        </div>`;
-    });
-
-    badge.innerText=cartData.length;
-    totalEl.innerText=total.toFixed(2);
-    checkoutWhats.href=`https://wa.me/5500000000000?text=Pedido:%20${cartData.map(i=>i.nome+' '+i.tamanho).join(', ')}%20Total:%20R$${total.toFixed(2)}`;
-  }
+  fbName.value="";
+  fbText.value="";
+  closeFeedback();
+}
 </script>
 
 </body>
